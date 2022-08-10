@@ -12,7 +12,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-
+  intl:
 
   cupertino_icons: ^1.0.2
 
