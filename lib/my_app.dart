@@ -8,11 +8,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Crypto Currencies',
+      title: 'Cryptocurrencies',
       theme: ThemeData(
         primarySwatch: Colors.indigo
       ),
-      home: HomePage(),
+      home: const HomePage(),
     );
   }
 }

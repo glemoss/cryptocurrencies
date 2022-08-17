@@ -1,3 +1,4 @@
+import 'package:crypto_currencies/pages/currency_page.dart';
 import 'package:crypto_currencies/repositories/currency_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -21,7 +22,7 @@ class _HomePageState extends State<HomePage> {
   AppBar dynamicAppBar() {
     if (selected.isEmpty) {
       return AppBar(
-        title: const Text('Crypto Currencies'),
+        title: const Text('Cryptocurrencies'),
         centerTitle: true,
       );
     } else {
@@ -34,15 +35,35 @@ class _HomePageState extends State<HomePage> {
         ),
         title: Text(selected.length.toString()),
         backgroundColor: Colors.indigo[50],
-        titleTextStyle:
-            const TextStyle(color: Colors.black87, fontWeight: FontWeight.bold, fontSize: 16.0),
+        titleTextStyle: const TextStyle(
+            color: Colors.black87, fontWeight: FontWeight.bold, fontSize: 16.0),
         iconTheme: const IconThemeData(color: Colors.black87),
         elevation: 1,
         actions: [
-          IconButton(onPressed: () {}, icon: const Icon(Icons.star, color: Colors.indigo,))
+          IconButton(
+              onPressed: () {
+                setState(() {
+                  selected.clear();
+                });
+              },
+              icon: const Icon(
+                Icons.star,
+                color: Colors.indigo,
+              ))
         ],
       );
     }
+  }
+
+  showDetails(Currency detailedCurrency) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => CurrencyPage(
+          currency: detailedCurrency,
+        ),
+      ),
+    );
   }
 
   @override
@@ -78,6 +99,9 @@ class _HomePageState extends State<HomePage> {
                     ? selected.remove(table[currency])
                     : selected.add(table[currency]);
               });
+            },
+            onTap: () {
+              showDetails(table[currency]);
             },
           );
         },
